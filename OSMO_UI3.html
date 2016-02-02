@@ -1,0 +1,1104 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1 transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+
+<form action="../Design/Mockups/AUTOTILL/MDLMOCK/ViewUserData.php" method="post">
+
+
+
+</form>
+
+
+
+<form action="../Design/Mockups/AUTOTILL/MDLMOCK/ViewUserData.php" method="post">
+
+<script>
+
+//**********************************************************************************************
+// Created March 23, 2015
+//  This is sample code connecting to a db
+//***********************************************************************************************
+    var objConnection = new ActiveXObject("adodb.connection");
+    var strConn = "driver={sql server};database=osmobotorg.fatcowmysql.com;uid=pholowko;password=Mozart11";
+    objConnection.Open(strConn);
+
+    var rs = new ActiveXObject("ADODB.Recordset");
+    var strQuery = "SELECT Date,Time, pH FROM osmobot_paul.CustomerData WHERE SerialNumber=''";
+    rs.Open(strQuery, objConnection);
+    rs.MoveFirst();
+
+// End of Jave DB connection  Code *************************************************************
+</script>
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart", "controls"]});
+google.setOnLoadCallback(drawChart); 
+
+function drawChart() {                  
+// use explicit DataTable construction instead of arrayToDataTable 
+    var dataDO = new google.visualization.DataTable();
+    var dataLL = new google.visualization.DataTable();
+    var dataRH = new google.visualization.DataTable();
+    var dataAT = new google.visualization.DataTable();
+    var dataWT = new google.visualization.DataTable();
+    var datapH = new google.visualization.DataTable();
+    var dataWL = new google.visualization.DataTable();
+    var dataPAR = new google.visualization.DataTable();
+    var dataEC = new google.visualization.DataTable();
+
+    dataDO.addColumn('datetime', 'Date');
+    dataAT.addColumn('datetime', 'Date');
+    dataLL.addColumn('datetime', 'Date');
+    datapH.addColumn('datetime', 'Date');
+    dataWL.addColumn('datetime', 'Date');
+    dataRH.addColumn('datetime', 'Date');
+    dataWT.addColumn('datetime', 'Date');
+    dataPAR.addColumn('datetime', 'Date');
+    dataEC.addColumn('datetime', 'Date');
+
+dataAT.addColumn('number', 'Temperature (C)');
+dataWT.addColumn('number', 'Temperature (C)');
+dataDO.addColumn('number', 'mg/liter');
+datapH.addColumn('number', 'mol/L');
+
+
+
+
+                dataWL.addColumn('number', 'CM');
+     
+
+dataRH.addColumn('number', 'Percent (%)');
+dataPAR.addColumn('number', 'umolm^-2s-1');
+
+                dataEC.addColumn('number', 'ppm');
+     
+dataLL.addColumn('number', 'Red');
+dataLL.addColumn('number', 'Green');
+dataLL.addColumn('number', 'Blue');
+
+
+      dataEC.addRows([
+            ]);
+
+
+
+        datapH.addRows([
+            ]);
+
+
+        dataAT.addRows([
+            ]);
+
+        dataRH.addRows([
+            ]);
+
+
+        dataWL.addRows([
+            ]);
+
+
+
+        dataWT.addRows([
+            ]);
+
+
+
+        dataDO.addRows([
+            ]);
+
+
+
+      dataLL.addRows([
+            ]);
+
+
+
+      dataPAR.addRows([
+            ]);
+
+
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Dissolved Oxygen',
+                                                   curveType: 'function',
+                                                   vAxis: {title: "mg/liter", minValue: 0, maxValue: 20},
+                                                   hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divDO'));
+    chart.draw(dataDO, options);
+
+
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Total Dissolved Solids',
+                                                   curveType: 'function',
+
+                                  vAxis: {title: "Concentration", minValue: 0, maxValue: 2000},
+                                  hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divEC'));
+    chart.draw(dataEC, options);
+
+
+
+
+var options = {
+                                                   legend: { position: 'top', maxLines: 3 },
+                                                   title: 'Light Level RGB',
+                                                   vAxis: {title: "divs"},
+                                                   hAxis: {title: "Time"} , 
+                                                  colors: ['red', 'green', 'blue'],
+                                                   isStacked: true,
+                                                    };
+
+//     var options = {
+//        width: 600,
+//        height: 400,
+//        bar: { groupWidth: '75%' },
+//        isStacked: true,
+//};
+
+
+ //     var chart = new google.visualization.ColumnChart(document.getElementById("'chart_divLL'"));
+//      chart.draw(dataLL, options);
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divLL'));
+    chart.draw(dataLL, options);
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Relative Humidity',
+                                                   curveType: 'function',
+                                                   vAxis: {title: "Percent (%)", minValue: 0, maxValue: 100},
+                                                   hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_divRH'));
+    chart.draw(dataRH, options);
+
+
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Air Temperature',
+                                                   curveType: 'function',
+
+
+                                                                        vAxis: {title: 'Degrees C', minValue: 0, maxValue: 100},
+                                                       
+                                                   hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divAT'));
+    chart.draw(dataAT, options);
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Water Temperature',
+                                                   curveType: 'function',
+
+
+                                                                        vAxis: {title: 'Degrees C', minValue: 0, maxValue: 100},
+                                                        
+                                                   hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divWT'));
+    chart.draw(dataWT, options);
+
+var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'pH',
+                                                   curveType: 'function',
+                                                   vAxis: {title: "pH", minValue: 0, maxValue: 14},
+                                                   hAxis: {title: "Time"}  
+                                                        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divpH'));
+    chart.draw(datapH, options);
+
+ var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Water Level',
+                                                   curveType: 'function',
+
+
+
+                                                   vAxis: {title: 'CM', minValue: 0, maxValue: 100},
+                                                       
+                                                   hAxis: {title: "Time"}  
+                                                        };
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divWL'));
+    chart.draw(dataWL, options);
+
+
+ var options = {
+                                                   legend: { position: 'top'},
+                                                   title: 'Photosynthetically Active Radiation (PAR)',
+                                                   curveType: 'function',
+                                                   vAxis: {title: "umolm^-2s-1"},
+                                                   hAxis: {title: "Time"}  
+                                                        };
+    var chart = new google.visualization.LineChart(document.getElementById('chart_divPAR'));
+    chart.draw(dataPAR, options);
+
+
+      var options = {
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        title: 'Light Level RGB',
+        vAxis: {title: "divs"},
+        hAxis: {title: "Time"} , 
+        colors: ['red', 'green', 'blue'],
+        isStacked: true,
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(dataLL, options);
+
+}
+
+
+</script>
+</form>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mark's Farm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
+        rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/pages/dashboard.css" rel="stylesheet">
+
+<link rel="stylesheet" href="path/to/material-design-iconic-font/css/material-design-iconic-font.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' type='text/css'>
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-blue.min.css">
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="svg-sprite/svg-sprite-av.css" rel="stylesheet">
+<script src="components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<!-- LINK TO PHP -->
+
+<link src="\MDLMOCK\ViewUserData.php">
+
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<style>
+
+.main {
+margin-top: 45px;
+}
+
+h3 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* NAV AND HEADER STYLES */
+/*************************/
+/*************************/
+/*************************/
+/*************************/
+
+/* FIX MENU BUTTON MARGINS */
+.mdl-layout__drawer-button {
+  margin-top: 20px;
+}
+/**/
+
+
+.mdl-layout__header, .mdl-layout__header > div, .mdl-layout__tab-bar, .mdl-layout__tab-bar-button {
+  background-color: #26A69A !important;
+}
+
+.mdl-layout__content, .horizontalStats {
+ background-color: #EEEEEE !important; 
+}
+
+
+.mdl-layout__tab-bar > .mdl-button {
+  margin-left: auto;
+  margin-bottom: auto;
+  color: rgb(255, 255, 255);
+  height: 44px;
+}
+
+/* PARAMETER and GRAPH CARD STYLES */
+
+
+.statChart {
+
+}
+  .statChart h3 {
+    margin-left: 16px;
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+
+.stat {
+  float: right;
+  margin-bottom: 16px;
+  width: auto;
+  text-align: center;
+}
+  .stat .h4 {
+    font-size: 20px;
+
+  }
+  .stat h4 {
+    margin-bottom: 0px !important;
+    margin-top: 8px !important;
+  }
+
+  .stat h6 {
+    font-size: 10px;
+    margin: 0;
+  }
+
+
+
+/* RECIPE CARD STYLES */
+
+  .mdl-layout__tab {
+    height: 44px;
+   
+  }
+    .mdl-layout__tab-bar-container {
+      height: 44px;
+    }
+
+
+/* ICON AND BUTTON STYLES */
+
+  .mdl-button--fab {
+    float: right;
+    margin-left: 8px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    display: inline-block;
+   
+  }
+
+  .stat .material-icons {
+    color: #757575;
+  }
+
+ 
+    .mdl-tooltip.mdl-tooltip--large {
+      font-size: 16px;
+      line-height: 1.5;
+      background-color: black;
+      min-width: 135px;
+      min-height: 8.25%;
+    }
+
+  
+.horizontalStats{
+    margin: 0;
+    width: 1077.160px !important;
+    width: 100% !important;
+    padding: 0px;
+  }
+
+
+  .mdl-card .graph {
+    color: #757575;
+  }
+
+  .material-icons.md-24 {
+    margin-right: 8px;
+  }
+
+  .material-icons.blue300 {
+   color: #64B5F6;
+   
+  }
+
+  .material-icons.purple600 {
+   color: #8E24AA;
+  }
+
+  .material-icons.cyan100 {
+    color: #B2EBF2;
+  }
+  .material-icons.yellow300 {
+    color: #FFF176;
+  }
+
+  .material-icons.md-36 {
+    font-size: 32px;
+  }
+
+.md-36.graph {
+    margin-right: 8px;
+}
+
+
+.mdl-card__title .mdl-card__title-text {
+  font-weight: 400;
+}
+
+/* WIZARD TABS FOR CREATING A GROW */
+.mdl-layout__tab-bar-grow {
+  padding: 0 0 0 0;
+  width: auto;
+  height: auto;
+  background-color: inherit;
+}
+
+ .mdl-data-table td {
+  padding-top: 6px;
+  padding-bottom:6px;
+  width: 115px;
+}
+
+.mdl-layout__content, .mdl-grid {
+  background-color: #ECEFF1 !important;
+}
+
+ /* ALERT SNACKBAR */
+
+ .alertSnackbar.mdl-card {
+  min-height: 100px;
+  background-color: #FF8A65;
+  float: left;
+  margin: 0px 8px 0px 8px;
+ }
+  .alertSnackbar > * {
+    color: #ffffff;
+  }
+  .alertSnackbar button {
+    float: right !important;
+  }
+
+</style>
+
+</head>
+
+
+<body>
+<!-- 
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a>
+<a href="http://www.osmobot.org" class="brand">
+				OsmoApp				
+			</a>		
+<a class="brand" href="http://www.osmobot.org"> 1000009: 2016-01-19 01:00:05: Timezone: Pacific (PT)</a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+          <li><a href="http://www.osmobot.com/contact.html" class="brand"> <i
+                            class="icon-user"> </i> Join OsmoBot Waitlist</a>
+                <a href="http://www.osmobot.org/User/edituser.php?userid=Ptest9" class="brand"> <i
+                            class="icon-user"> </i> Edit User Profile</a>
+          </li>
+          -->
+<!-- This section will be saved for when we have users wanting to add OsmoBot's to their account
+
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="icon-cog"></i> Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="javascript : ;">Settings</a></li>
+              <li><a href="javascript : ;">Help</a></li>
+            </ul>
+          </li>
+
+            </ul>
+
+       
+        
+      </div>
+
+    </div>
+
+  </div>
+
+</div>-->
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Cark's Farm</span>
+    </div>
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar">
+      <a href="#raft1" class="mdl-layout__tab is-active">RAFT 1</a>
+      <a href="#raft2" class="mdl-layout__tab">RAFT 2</a>
+      <a href="#scroll-tab-3" class="mdl-layout__tab">RAFT 3</a>
+      <a href="#scroll-tab-4" class="mdl-layout__tab">RAFT 4</a>
+      <a href="#scroll-tab-5" class="mdl-layout__tab">RAFT 5</a>
+      <a href="#alerts" class="mdl-layout__tab">ALERTS<span class="mdl-badge" data-badge="3"></span></a>
+    </div>
+   
+  </header>
+
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Mark's Farm</span>
+  </div>
+  <!-- UNCLOSED /DIV REQUIRED BY MDL -->
+
+
+<main class="mdl-layout__content">
+<section id="raft1" class="mdl-grid mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-layout__tab-panel is-active">
+<div class="page-content"><!-- Your content goes here -->
+  <div style="margin-left: 16px; min-height: 56px; margin-top: 28px; width: 100%;" class="mdl-cell">
+          <h3 style="display: inline-block; padding-top: 4px;">Data</h3>
+  </div>
+
+        <div class="horizontalStats mdl-card mdl-grid mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop widget widget-nopad">
+            <div class="mdl-card__title">
+                <i class="material-icons cyan100 md-24">filter_drama<!-- cloud_queue --></i>
+                <h1 class="mdl-card__title-text">Climate</h1>
+                  <!-- TIMESTAMP -->
+                  <p style="margin-left: auto; margin-right: 8px;" class="mdl-card__subtitle-text">updated: Today, 13:42:55 </p>
+                    <i style="cursor: pointer; color: #616161;" class="material-icons md-36 md-light">settings</i>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+                <div class="widget-content">
+                  <div id="big_stats" class="cf">
+                    <a style="cursor: default;" href="#chartPAR"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet"> 
+                      <i style="cursor: pointer;" id="ttPAR" class="material-icons md-36 purple600">wb_incandescent</i>
+                       <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttPAR">
+                         3.06 mol / m &#178; / day <br> in 20 hours
+                        </div>
+                      <h4 class="value"> 42.5</h4>
+                      <h6>&micro;mol/m&#178;/s</h6> 
+                      <h4 class="h4">PAR</h4> 
+                    </div></a>
+
+
+                    <a style="cursor: default;" href="#chartRH"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet">
+                      <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttRH">
+                        Avg. 1d Humidity <br>is down 2.1% 
+                        </div> 
+                      <i style="cursor: pointer;" id="ttRH" class="material-icons md-36">cloud_download</i>
+                      <!-- Multiline Tooltip -->
+                      
+                      <h4 class="value"> 64.8%</h4>
+                      <h4 class="h4">Humidity</h4>
+                    </a>
+
+                       
+                    </div>
+                    <!-- .stat -->
+                    
+                    <a style="cursor: default;" href="#chartAT"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet"> 
+                      <i style="cursor: pointer;" id="ttAT" class="material-icons md-36">cloud_upload</i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttAT">
+                         Avg. 1d temp <br> is up 1.6&deg; 
+                        </div>
+                      <h4 class="value"> 72.4&deg;</h4> 
+                      <h6>Fahrenheit</h6>
+                      <h4 class="h4">Ambient</h4> 
+
+                    </div>
+                    </a>
+                    <!-- .stat -->
+                    <!--
+                    <div class="stat"> <span class="h4">Dew Point</span> <BR> <span class="value"> 3.3%</span> </div>
+                   
+                    
+                   .stat --> 
+                  </div>
+              </div>
+            </div>
+        </div>
+
+          <!-- WATER STATS -->
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop widget widget-nopad">
+            <div class="mdl-card__title widget-header"> <i class="icon-tint"></i>
+              <i class="material-icons blue300 md-24">opacity</i>
+              <h1 class="mdl-card__title-text">Water</h1>
+                                <!-- TIMESTAMP -->
+                <p style="margin-left: auto; margin-right: 8px;" class="mdl-card__subtitle-text">updated: Today, 13:42:54 </p>
+                <i style="cursor: pointer; color: #616161;" class="material-icons md-36 md-light">settings</i>
+
+            </div>
+            <!-- /widget-header -->
+                  <div id="big_stats" class="">
+
+                     <!-- .stat -->
+                    
+                    <a style="cursor: default;" href="#chartWT"><div class="stat mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet"> 
+                     <i style="cursor: pointer;" id="ttWT" class="material-icons md-36">cloud_upload</i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttWT">
+                        1wk avg. is<br>down 1.6 
+                        </div> 
+                    <h4 class="h4">Temp</h4> 
+                    <h4 class="value"> 76.6&deg;</h4>
+                    <h6>Fahrenheit</h6>
+                    </div>
+                    </a>
+                    
+                    <!-- .stat -->
+                    
+                    <a style="cursor: default" href="#chartDO"><div class="stat mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+                     <i style="cursor: pointer;" id="ttDO" class="material-icons md-36 blue300">blur_on<!-- grain --></i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttDO">
+                         DO is down<br>1.3 mg/L 
+                        </div> 
+                        <h4 class="h4">DO</h4> 
+                        <h4 class="value"> 6.8</h4> 
+                        <h6>mg/L</h6>
+                    </div>
+                    </a>
+                    <!-- .stat -->
+                    
+                  <div class="stat mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+                    <i style="cursor: pointer;" id="ttDepth" class="material-icons md-36">format_color_fill<!--straighten--></i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttDepth">
+                         Water change<br>on Fri 
+                        </div> 
+                    <h4 class="h4">Volume</h4>
+                    <h4 class="value">971</h4>
+                    <h6>gallons</h6> 
+                    </div>
+
+                    <a style="cursor: default" href="#chartPH"><div class="stat mdl-cell mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+                    <i style="cursor: pointer; -webkit-transform: rotate(275deg); color: #66BB6A;" id="ttPH" class="material-icons md-36">colorize <!-- check_circle share--></i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttPH">
+                         pH at 6.2 &#177; 0.2 <br> since Mar 15
+                        </div>  
+                      <h4 class="h4">pH</h4> 
+                      <h4 class="value"> 6.2</h4>
+                    </div></a>
+                   </div>
+                  </div>
+                
+                <!-- /widget-content --> 
+    
+
+<!-- GRAPHS SECTION -->
+<!-- ++++++++++++++ -->
+<!-- ++++++++++++++ -->
+<!-- ++++++++++++++ -->
+        <div style="margin-left: 16px; min-height: 56px; margin-top: 28px; width: 100%;" class="mdl-cell">
+        <h3 style="display: inline-block; padding-top: 4px;">Graphs</h3>
+        <!-- CREATE A GRAPH FAB BUTTON -->
+      
+          
+        </div>
+
+          <!-- /widget -->
+          <div id="chartPH" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header">
+              <h3 class="mdl-card__title-text"><i style="-webkit-transform: rotate(275deg);" class="material-icons md-36 graph">colorize</i>pH</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            <div id="chart_divpH" style="width: 100%; min-height: 400px;"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+
+
+          <!-- /widget -->
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header">
+              <h3 class="mdl-card__title-text"> <i class="material-icons md-36 graph">grain</i>Total Dissolved Solids</h3>
+            </div>
+            <!-- /widget-header -->
+
+            <div class="widget-content">
+              <div id="chart_divEC" style="width: 100%; min-height: 400px;"></div> 
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+          <!-- /widget -->
+          <div id="chartPAR" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header">
+
+              <h3 class="mdl-card__title-text">
+                <i class="material-icons purple600 md-36 graph">wb_incandescent</i>
+              PAR</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+             <div id="chart_divPAR" style="width: 100%; height: 400px;"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+             <!-- /widget -->
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header">
+              <h3 class="mdl-card__title-text"> 
+                <i class="material-icons purple600 md-36 graph">wb_incandescent</i>
+              Light Level</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+            <div id="chart_divLL" style="width: 100%; height: 400px;"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+     
+
+      <!-- /widget -->
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> 
+                <i class="material-icons purple600 md-36 graph">wb_incandescent</i>
+              Stacked Light</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div id="columnchart_values" style="width: 100%; height: 400px;"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+           <!-- /widget -->
+          <div id="chartRH" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> Relative Humidity </h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div id="chart_divRH" style="width: 100%; height: 400px;"></div>
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+
+
+          <!-- /widget -->
+          <div id="chartAT" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> Air Temperature </h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div id="chart_divAT" style="width: 100%; height: 400px;"></div> 
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+          <!-- /widget -->
+          <div id="chartDO" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> Dissolved Oxygen</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div id="chart_divDO" style="width: 100%; height: 400px"></div> 
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+          
+
+   <!-- /widget -->
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> Water Level </h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">         
+               <div id="chart_divWL" style="width: 100%; height: 400px;"></div> 
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+
+    <!-- /widget -->
+          <div id="chartWT" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop widget statChart">
+            <div class="mdl-card__title widget-header"> 
+              <h3 class="mdl-card__title-text"> Water Temperature </h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div id="chart_divWT" style="width: 100%; height: 400px;"></div> 
+              <!-- /area-chart --> 
+            </div>
+            <!-- /widget-content --> 
+          </div>
+
+</section>
+
+
+
+
+
+
+<!-- RAFT 2 TAB SECTION -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<section class="mdl-grid mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-layout__tab-panel" id="raft2">
+
+  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--8-col-tablet mdl-cell--8-col-desktop">
+    <div class="page-content">
+     
+
+
+
+      <!-- GROW WIZARD TAB CARD -->
+      <div class="mdl-layout__tab-bar-grow mdl-layout__tab-bar mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+          <a href="#plants" class="mdl-tabs__tab is-active">Plants</a>
+          <a href="#nutrients" class="mdl-tabs__tab">Nutrients</a>
+          <a href="#climate" class="mdl-tabs__tab">Climate</a>
+      </div>
+
+     <div class="mdl-tabs mdl-tabs__panel is-active" id="plants">
+    <!-- SEARCHBAR FOR PLANT SPECIES -->
+    <div>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input style="margin-left: 8px;" class="mdl-textfield__input" type="text" id="sample1">
+          <label style="margin-left: 8px;" class="mdl-textfield__label" for="sample1">Species...</label>
+        </div>
+        <i style="width:24px;" class="material-icons md-24">search</i>
+      </form>
+    </div>
+
+      <table class="mdl-data-table mdl-js-data-table">
+      <thead>
+      <tr>
+       <th class="mdl-data-table__cell--non-numeric">Species</th>
+       <th class="mdl-data-table__cell--non-numeric">Harvest</th>
+       <th class="mdl-data-table__cell--non-numeric"></th>
+      </tr>
+      </thead>
+
+    <tbody>
+      <tr>
+       <td class="mdl-data-table__cell--non-numeric">Arugula</td>
+       <td>34 ±5d</td>
+       <td><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+      <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+      <span class="mdl-radio__label"></span>
+    </label></td>
+      </tr>
+      <tr>
+       <td class="mdl-data-table__cell--non-numeric">Arugula</td>
+       <td>37 ±3d</td>
+       <td><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+      <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+      <span class="mdl-radio__label"></span>
+    </label></td>
+      </tr>
+       <tr>
+       <td class="mdl-data-table__cell--non-numeric">Arugula</td>
+       <td>42 ±5d</td>
+       <td><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+      <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+      <span class="mdl-radio__label"></span>
+    </label></td>
+      </tr>
+    </tbody>
+    </table>  
+    </div>
+
+
+     <div class="mdl-tabs mdl-tabs__panel" id="nutrients">
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+          <tr>
+            <th class="mdl-data-table__cell--non-numeric">Seedling</th>
+            <th>Transplant</th>
+            <th>Harvest</th>
+          </tr>
+          <tr>
+          <th style="text-align: left;">15d</th>
+          <th style="text-align: left;">30d</th>
+          <th style="text-align: left;">60d</th>
+          <th style="text-align: left;">90d</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">NH4</td>
+            <td>2.35</td>
+            <td>4.15</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">NH3</td>
+            <td>1.25</td>
+            <td>4.37</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">NO4</td>
+            <td>1.05</td>
+            <td>2.35</td>
+          </tr>
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">NO4</td>
+            <td>10</td>
+            <td>2.35</td>
+          </tr>
+        </tbody>
+       
+      </table>
+     </div>
+
+
+
+
+     </div>
+    </div>
+  </div>
+
+   <div class="horizontalStats mdl-card mdl-grid mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop widget widget-nopad">
+            <div class="mdl-card__title">
+                <i class="material-icons blue300 md-24">settings_system_daydream <!-- filter_drama OR cloud_queue --></i>
+                <h1 class="mdl-card__title-text">Climate</h1>
+                  <!-- TIMESTAMP -->
+                  <p style="margin-left: auto; margin-right: 8px;" class="mdl-card__subtitle-text">updated: Today, 13:42:55 </p>
+                    <i style="cursor: pointer; color: #616161;" class="material-icons md-36 md-light">settings</i>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+                <div class="widget-content">
+                  <div id="big_stats" class="cf">
+                    <a style="cursor: default;" href="#chartPAR"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet"> 
+                      <i style="cursor: pointer;" id="ttPAR" class="material-icons md-36 purple600">wb_incandescent</i>
+                       <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttPAR">
+                         3.06 mol / m &#178; / day <br> in 20 hours
+                        </div>
+                      <h4 class="value"> 42.5</h4>
+                      <h6>&micro;mol/m&#178;/s</h6> 
+                      <h4 class="h4">PAR</h4> 
+                    </div></a>
+
+
+                    <a style="cursor: default;" href="#chartRH"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet">
+                      <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttRH">
+                        Avg. 1d Humidity <br>is down 2.1% 
+                        </div> 
+                      <i style="cursor: pointer;" id="ttRH" class="material-icons md-36">cloud_download</i>
+                      <!-- Multiline Tooltip -->
+                      
+                      <h4 class="value"> 64.8%</h4>
+                      <h4 class="h4">Humidity</h4>
+                    </a>
+
+                       
+                    </div>
+                    <!-- .stat -->
+                    
+                    <a style="cursor: default;" href="#chartAT"><div class="stat mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet"> 
+                      <i style="cursor: pointer;" id="ttAT" class="material-icons md-36">cloud_upload</i>
+                      <!-- Multiline Tooltip -->
+                        <div class="mdl-shadow--2dp mdl-tooltip mdl-tooltip--large" for="ttAT">
+                         Avg. 1d temp <br> is up 1.6&deg; 
+                        </div>
+                      <h4 class="value"> 72.4&deg;</h4> 
+                      <h6>Fahrenheit</h6>
+                      <h4 class="h4">Ambient</h4> 
+
+                    </div>
+                    </a>
+                    <!-- .stat -->
+                    <!--
+                    <div class="stat"> <span class="h4">Dew Point</span> <BR> <span class="value"> 3.3%</span> </div>
+                   
+                    
+                   .stat --> 
+                  </div>
+              </div>
+            </div>
+        </div>
+
+</section>
+
+
+
+
+<!-- ALERTS TAB SECTION -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<!-- categorized alerts by () -->
+<!-- ^^^^^^^^^^^^^^^^^^ -->
+<section class="mdl-grid mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-layout__tab-panel" id="alerts">
+
+<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+  <div class="page-content">
+
+  <div class="alertDiv">
+   <div class="alertSnackbar mdl-card mdl-shadow--2dp mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+    <div class="mdl-card__title"> 
+     <h3 class="mdl-card__title-text"><i class="material-icons md-36 graph">grain</i>TDS too high</h3>
+    </div>
+      <div class="mdl-card__supporting-text">TDS in Raft 3 is 115ppm above recipe target</div>
+       
+   </div>
+
+   <div class="alertSnackbar mdl-card mdl-shadow--2dp mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+    <div class="mdl-card__title"> 
+     <h3 class="mdl-card__title-text"><i class="material-icons md-36 graph">grain</i>TDS</h3>
+    </div>
+      <div class="mdl-card__supporting-text">TDS is 115ppm above recipe target</div>
+   <a style="color: #424242;" class="mdl-button mdl-js-button">
+        DISMISS
+       </a>
+      
+   </div>
+
+   <div class="alertSnackbar mdl-card mdl-shadow--2dp mdl-cell--3-col-desktop mdl-cell--3-col-tablet">
+    <div class="mdl-card__title"> 
+     <h3 class="mdl-card__title-text"><i class="material-icons md-36 graph">grain</i>TDS</h3>
+    </div>
+      <div class="mdl-card__supporting-text">TDS is 115ppm above recipe target</div>
+   </div>
+
+  </div>
+
+
+  </div>
+</div>
+</section>
+
+</main>
+</body>
+</html>
